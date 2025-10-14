@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Template de exemplo para o Desafio DIO — cria um S3 Bucket e uma Role IAM de exemplo.
+Parameters:
+  BucketName:
+    Type: String
+    Description: "Nome único para o bucket S3 (deve ser globalmente único)."
+    Default: "dio-challenge-jullia-2025-example" 
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref BucketName
+      AccessControl: Private
+      VersioningConfiguration:
+        Status: Suspended
+
+  ExampleIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AWS::StackName}-example-role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      Path: "/"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
+
+Outputs:
+  BucketNameOutput:
+    Description: "jullia-cfn-bucket-2025-10-14-abc"
+    Value: !Ref MyS3Bucket
+
+  ExampleRoleOutput:
+    Description: "ARN da role IAM criada"
+    Value: !GetAtt ExampleIAMRole.Arn
