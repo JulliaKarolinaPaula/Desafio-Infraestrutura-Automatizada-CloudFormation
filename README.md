@@ -1,4 +1,4 @@
-# DIO - Desafio: Automatizando Infraestrutura com AWS CloudFormation
+# Desafio: Automatizando Infraestrutura com AWS CloudFormation
 
 ## 1. Objetivo do Projeto
 O objetivo deste desafio foi **aplicar os conhecimentos adquiridos em AWS CloudFormation** para criar uma infraestrutura automatizada, documentando cada etapa do processo. O foco principal foi criar **um bucket S3** e **uma role IAM** de forma segura, utilizando **CloudFormation**, e registrar todas as observações e prints no repositório.
